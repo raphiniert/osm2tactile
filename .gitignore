@@ -1,0 +1,12 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# flask specific
+instance/config.py
+
+# project specific
+.env
+data/db
+data/osm

@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="osm2tactile">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="{{ url_for('static', filename='css/main.css') }}" rel="stylesheet" />
+    {% block customcss %}
+        {# include custom css files #}
+    {% endblock %}
+  </head>
+  <body>
+    <header>
+      <div class="top-space">
+        {# nav #}
+        <nav id="navigation">
+          <a href="{{ url_for('osm2tactile.index') }}">Home</a>
+        </nav>
+      </div>
+    </header>
+    <main>
+      <div id="content">
+      {% block content %}
+          {# put content here #}
+      {% endblock %}
+      </div>
+    </main>
+    <footer id="footer"></footer>
+    {% block scripts %}
+        {# include custom js files #}
+    {% endblock %}
+  </body>
+</html>

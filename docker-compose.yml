@@ -1,0 +1,47 @@
+version: "3.9"
+
+services:
+  db:
+    env_file:
+      - .env
+    environment:
+      - TZ=Europe/Vienna
+    image: postgis/postgis:14-master
+    volumes:
+      - ./data/db:/var/lib/postgresql/data
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "10"
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+  flask:
+    env_file:
+      - .env
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    command: flask run
+    ports:
+      - "5000:5000"
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "200m"
+        max-file: "10"
+    stdin_open: true
+    tty: true
+    restart: unless-stopped
+    volumes:
+      - ./:/srv/osm2tactile
+    depends_on:
+      db:
+        condition: service_healthy

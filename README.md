@@ -61,7 +61,7 @@ download the osm data e. g. from https://download.geofabrik.de (using austria fo
 **note**: go grab yourself a coffe, the next step might take a while...
 
 ```shell script
-docker-compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --username=postgres --port=5432 --password
+docker compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --username=postgres --port=5432 --password
 ```
 
 ### bonus points: self host nominatim

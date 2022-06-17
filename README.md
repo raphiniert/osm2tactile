@@ -11,7 +11,18 @@ git clone https://github.com/raphiniert/osm2tactile.git
 cd osm2tactile
 ```
 
-### flask config
+### optional: create virtual enviornment
+
+this step is only necessary when developing
+
+```shell script
+python3 -m venv venv
+. venv/bin/activate
+pip install pip --upgrade
+pip install requirements-dev.txt
+```
+
+### create flask config
 
 create the `instance/config.py` file and including relevant settings such as:
 ```python
@@ -28,7 +39,7 @@ POSTGRES_HOST = "db"
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"
 ```
 
-### .env file
+### create .env file
 
 ```env
 # docker compose
@@ -48,7 +59,7 @@ FLASK_RUN_HOST=0.0.0.0
 FLASK_ENV=development
 ```
 
-### start containers
+### start (and build) containers
 
 ```shell script
 docker compose up -d

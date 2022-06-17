@@ -11,5 +11,7 @@ bp = Blueprint("osm2tactile", __name__)
 
 
 @bp.route("/", methods=("GET",), strict_slashes=False)
-def index():    
-    return render_template(f"osm2tactile/index.html", mapnik_version=mapnik.mapnik_version_string())
+def index():
+    return render_template(
+        f"osm2tactile/index.html", mapnik_version=mapnik.mapnik_version_string()
+    )

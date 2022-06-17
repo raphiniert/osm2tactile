@@ -56,7 +56,7 @@ docker compose up -d
 
 ### import data via osm2pgsql
 
-download the osm data e. g. from https://download.geofabrik.de (using austria for the following examples) and move it to `data/osm/austria-latest.osm.pbf` 
+download the osm data e. g. from https://download.geofabrik.de (using austria for the following examples) and move it to `data/osm/austria-latest.osm.pbf`
 
 **note**: go grab yourself a coffe, the next step might take a while...
 

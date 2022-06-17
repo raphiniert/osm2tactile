@@ -46,5 +46,5 @@ def create_app(test_config=None):
 
     app.add_url_rule("/", endpoint="root", view_func=osm2tactile.index)
     logger.debug(f"Added url rule for / as root endpoint to osm2tactile.index")
-    
+
     return app

@@ -14,6 +14,9 @@
     <p>
       Map center coordinates: {{ lat }}, {{ lon }}
     </p>
+    <p>
+      {{ face_names }}
+    </p>
     <img src="{{ url_for('static', filename=map_img)}}" alt="" />
   </div>
 {% endblock%}

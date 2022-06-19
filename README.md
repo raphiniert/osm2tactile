@@ -37,6 +37,9 @@ POSTGRES_HOST = "db"
 
 # nominatim
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"
+
+# fonts
+CUSTOM_FONT_PATH = "/srv/osm2tactile/osm2tactile/static/fonts"
 ```
 
 ### create .env file
@@ -74,6 +77,10 @@ download the osm data e. g. from https://download.geofabrik.de (using austria fo
 ```shell script
 docker compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --username=postgres --port=5432 --password
 ```
+
+### download braille fonts
+
+while importing the osm data, you could browse for some braille fonts and put the *.ttf files into `osm2tactile/static/fonts`. Exmaples can be found at the [Fernuni Hagen](https://www.fernuni-hagen.de/studium-sehgeschaedigte/studium/downloads.shtml)
 
 ### bonus points: self host nominatim
 

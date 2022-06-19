@@ -39,7 +39,7 @@ def index():
     m.zoom_to_box(bounding_box)
 
     # make the style available to the map with a name
-    road_style_name = "roads-fill-dejavu"
+    road_style_name = "roads-fill-braille"
 
     # create layer containing the actual map data
     roads_layer = mapnik.Layer("roads-layer")
@@ -69,4 +69,5 @@ def index():
         map_img=f"{map_path}/{map_file_name}",
         lat=lat,
         lon=lon,
+        face_names=[fn for fn in mapnik.FontEngine.face_names()],
     )

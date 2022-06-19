@@ -7,4 +7,11 @@
       <TextSymbolizer allow-overlap="false" face-name="DejaVu Sans Book" size="16" placement="line" dx="0.0" dy="-15.0">[name]</TextSymbolizer>
     </Rule>
   </Style>
+  <Style name="roads-fill-braille">
+    <Rule>
+      <Filter>[highway] !=''</Filter>
+      <LineSymbolizer stroke="#000000" stroke-width="3"/>
+      <TextSymbolizer allow-overlap="false" face-name="HBS-6-Braille Taktil Regular" size="42" placement="line" dx="0.0" dy="-15.0">[name]</TextSymbolizer>
+    </Rule>
+  </Style>
 </Map>

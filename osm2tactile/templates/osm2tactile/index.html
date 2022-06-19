@@ -15,7 +15,12 @@
       Map center coordinates: {{ lat }}, {{ lon }}
     </p>
     <p>
-      {{ face_names }}
+      Available fonts:
+      <ul>
+        {% for face_name in face_names %}
+          <li>{{ face_name }}</li>
+        {% endfor %}
+      </ul>
     </p>
     <img src="{{ url_for('static', filename=map_img)}}" alt="" />
   </div>

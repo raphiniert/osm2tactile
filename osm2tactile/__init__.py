@@ -38,6 +38,14 @@ def create_app(test_config=None):
     except OSError:
         pass
 
+    # db stuff
+    from osm2tactile.db import db, setup_engine
+
+    with app.app_context():
+        setup_engine()
+
+    db.init_app(app)
+
     # register blueprints
     from osm2tactile import osm2tactile
 

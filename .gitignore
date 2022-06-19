@@ -13,3 +13,4 @@ instance/config.py
 .env
 data/db
 data/osm
+osm2tactile/static/img/

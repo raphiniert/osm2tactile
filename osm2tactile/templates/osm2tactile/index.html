@@ -11,6 +11,10 @@
     <p>
       Mapnik version: {{ mapnik_version }}
     </p>
+    <p>
+      Map center coordinates: {{ lat }}, {{ lon }}
+    </p>
+    <img src="{{ url_for('static', filename=map_img)}}" alt="" />
   </div>
 {% endblock%}
 

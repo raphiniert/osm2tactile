@@ -45,6 +45,7 @@ def create_app(test_config=None):
         setup_engine()
 
     db.init_app(app)
+    logger.debug(f"Setup db engine and initialzed app.")
 
     # register blueprints
     from osm2tactile import osm2tactile

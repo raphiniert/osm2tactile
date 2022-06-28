@@ -1,3 +1,6 @@
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+![code style](https://img.shields.io/badge/code%20style-black-000000.svg)
+
 # osm2tactile
 create tactile maps for visually impaired and blind people
 
@@ -17,6 +20,14 @@ road names are displayed in six point braille, grey dashed lines symbolize build
 - Erdberger Lände
 - Halmgasse
 - Hauptallee
+- etc.
+
+#### following public transport stations are on the map
+
+- Wittelsbachstraße (Wiener Linien)
+- Wittelsbachstraße (Wiener Linien)
+- Wittelsbachstraße/Schüttelstraße
+- Wittelsbachstraße/Böcklinstraße
 - etc.
 
 #### following points of interest are on the map

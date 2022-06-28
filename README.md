@@ -3,6 +3,12 @@ create tactile maps for visually impaired and blind people
 
 a simple web service, generating maps, based on open street map data, using a braille font and suitable for embossed or swellpaper printing
 
+## example map
+
+![example map](osm2tactile/static/img/example_map.png)
+
+road names are displayed in six point braille, building outlines are grey dashed lines. a black square is at the center of the map and black circles symobilze public transport stops.
+
 ## setup
 
 ### clone repo

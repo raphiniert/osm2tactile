@@ -7,7 +7,7 @@ a simple web service, generating maps, based on open street map data, using a br
 
 ![example map](osm2tactile/static/img/example_map.png)
 
-road names are displayed in six point braille, building outlines are grey dashed lines. a black square is at the center of the map and black circles symobilze public transport stops.
+road names are displayed in six point braille, grey dashed lines symbolize building outlines. a black square is rendered at the center of the map and black circles symobilze public transport stops.
 
 ### auto generated description for example map
 

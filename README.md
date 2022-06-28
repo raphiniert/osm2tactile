@@ -9,6 +9,25 @@ a simple web service, generating maps, based on open street map data, using a br
 
 road names are displayed in six point braille, building outlines are grey dashed lines. a black square is at the center of the map and black circles symobilze public transport stops.
 
+### auto generated description for example map
+
+#### following streets are on the map
+
+- Böcklinstraße
+- Erdberger Lände
+- Halmgasse
+- Hauptallee
+- etc.
+
+#### following points of interest are on the map
+
+- Billa Schüttelstraße 39
+- Bundes-Blindenerziehungsinstitut Wittelsbachstraße 5
+- Litfasssäule Schüttelstraße
+- Lotos Apotheke Wittelsbachstraße 4
+- Museum des Blindenwesens Wittelsbachstraße 5
+- etc.
+
 ## setup
 
 ### clone repo

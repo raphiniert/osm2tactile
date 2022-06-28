@@ -25,6 +25,7 @@ def get_mapnik_stylesheet():
             "dy": -15.0,
             "placement": "line",
             "size": 16,
+            "spacing": 100,
         },
     }
     building = {
@@ -66,38 +67,64 @@ def index():
     # zoom to bounding box
     m.zoom_to_box(bounding_box)
 
-    # make the style available to the map with a name
-    road_style_name = "road-style"
-    building_style_name = "building-style"
-
-    # create layer containing the actual map data
+    # create layer containing the actual highway map data
     roads_layer = mapnik.Layer("roads-layer")
     roads_layer.datasource = mapnik.PostGIS(
         host=current_app.config["POSTGRES_HOST"],
         user=current_app.config["POSTGRES_USER"],
         password=current_app.config["POSTGRES_PASSWORD"],
         dbname=current_app.config["POSTGRES_DB"],
-        table="planet_osm_line",
+        table=f"(select * from planet_osm_line where highway != '') as lines",
     )
     # append a certain style to the layer
-    roads_layer.styles.append(road_style_name)
+    roads_layer.styles.append("road-style")
 
-    # create layer containing the actual map data
+    # create layer containing the actual building map data
     building_layer = mapnik.Layer("roads-layer")
     building_layer.datasource = mapnik.PostGIS(
         host=current_app.config["POSTGRES_HOST"],
         user=current_app.config["POSTGRES_USER"],
         password=current_app.config["POSTGRES_PASSWORD"],
         dbname=current_app.config["POSTGRES_DB"],
-        table="planet_osm_polygon",
+        table=f"(select * from planet_osm_polygon where building != '') as polygons",
     )
     # append a certain style to the layer
-    building_layer.styles.append(building_style_name)
+    building_layer.styles.append("building-style")
 
-    # append the layer to the map
+    # create layer containing the actual public transport map data
+    public_transport_layer = mapnik.Layer("public-transport-layer")
+    public_transport_layer.datasource = mapnik.PostGIS(
+        host=current_app.config["POSTGRES_HOST"],
+        user=current_app.config["POSTGRES_USER"],
+        password=current_app.config["POSTGRES_PASSWORD"],
+        dbname=current_app.config["POSTGRES_DB"],
+        table=f"(select * from planet_osm_point  where public_transport != '' or railway != '') as lines",
+    )
+    # append a certain style to the layer
+    public_transport_layer.styles.append("public-transport-style")
+
+    # create a square at the map center
+    # create geometry feature at center of bounding box
+    feature = mapnik.Feature(mapnik.Context(), 1)
+    feature.geometry = feature.geometry.from_wkt(
+        f"POINT({(bounding_box.minx + bounding_box.maxx) / 2} {(bounding_box.miny + bounding_box.maxy) / 2})"
+    )
+
+    # create new in memory datasource
+    ds = mapnik.MemoryDatasource()
+    ds.add_feature(feature)
+
+    # create center layer
+    center_layer = mapnik.Layer("center-layer")
+    center_layer.datasource = ds
+    center_layer.styles.append("center-style")
+
+    # append all relevant layers to the map
     mapnik.load_map_from_string(m, get_mapnik_stylesheet())
+    m.layers.append(public_transport_layer)
     m.layers.append(roads_layer)
     m.layers.append(building_layer)
+    m.layers.append(center_layer)
 
     # save-path for the image
     static_path = "osm2tactile/static"

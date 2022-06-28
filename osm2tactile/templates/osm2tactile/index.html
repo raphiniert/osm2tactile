@@ -37,24 +37,12 @@
         {% if loop.first %}
           <ul>Following points of interest are on this map:
         {% endif %}
-            <li>{{ point.name }} {{ point_lines[point.osm_id]}} {{ point['addr:housenumber']}}</li>
+            <li>{{ point.name }} {{ point_lines[point.osm_id]}}{% if point['addr:housenumber'] %} {{ point['addr:housenumber'] }}{% endif %}</li>
         {% if loop.last %}
           </ul>
         {% endif %}
       {% else %}
         <p>No street names found on map</p>
-      {% endfor %}
-      <h3>Addresses</h3>
-      {% for building in buildings %}
-        {% if loop.first %}
-          <ul>Following addresses are on this map:
-        {% endif %}
-            <li>{{ building['addr:street'] }} {{ building['addr:housenumber']}}</li>
-        {% if loop.last %}
-          </ul>
-        {% endif %}
-      {% else %}
-        <p>No addresses found on map</p>
       {% endfor %}
     </div>
   </div>

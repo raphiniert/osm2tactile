@@ -7,4 +7,10 @@
       <TextSymbolizer allow-overlap="{{ road.text.allow_overlap }}" face-name="{{ road.text.face_name }}" size="{{ road.text.size }}" placement="{{ road.text.placement }}" dx="{{ road.text.dx }}" dy="{{ road.text.dy }}">[name]</TextSymbolizer>
     </Rule>
   </Style>
+  <Style name="building-style">
+    <Rule>
+      <Filter>[building] != ''</Filter>
+      <LineSymbolizer stroke="{{ building.line.stroke }}" stroke-dasharray="{{ building.line.stroke_dasharray }}" stroke-width="{{ building.line.stroke_width }}"/>
+    </Rule>
+  </Style>
 </Map>

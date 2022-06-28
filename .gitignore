@@ -14,4 +14,4 @@ instance/config.py
 data/db
 data/osm
 osm2tactile/static/img/
-fonts/
+osm2tactile/static/fonts/

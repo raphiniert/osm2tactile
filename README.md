@@ -3,6 +3,12 @@ create tactile maps for visually impaired and blind people
 
 a simple web service, generating maps, based on open street map data, using a braille font and suitable for embossed or swellpaper printing
 
+## example map
+
+![example map](osm2tactile/static/img/example_map.png)
+
+road names are displayed in six point braille, building outlines are grey dashed lines. a black square is at the center of the map and black circles symobilze public transport stops.
+
 ## setup
 
 ### clone repo
@@ -37,6 +43,9 @@ POSTGRES_HOST = "db"
 
 # nominatim
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"
+
+# fonts
+CUSTOM_FONT_PATH = "/srv/osm2tactile/osm2tactile/static/fonts"
 ```
 
 ### create .env file
@@ -74,6 +83,10 @@ download the osm data e. g. from https://download.geofabrik.de (using austria fo
 ```shell script
 docker compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --username=postgres --port=5432 --password
 ```
+
+### download braille fonts
+
+while importing the osm data, you could browse for some braille fonts and put the *.ttf files into `osm2tactile/static/fonts`. Exmaples can be found at the [Fernuni Hagen](https://www.fernuni-hagen.de/studium-sehgeschaedigte/studium/downloads.shtml)
 
 ### bonus points: self host nominatim
 

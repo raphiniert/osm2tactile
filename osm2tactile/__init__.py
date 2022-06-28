@@ -1,6 +1,7 @@
 import os
 import logging
 
+from mapnik import register_fonts
 from flask import current_app, g, Flask, request
 from rich.logging import RichHandler
 
@@ -55,5 +56,8 @@ def create_app(test_config=None):
 
     app.add_url_rule("/", endpoint="root", view_func=osm2tactile.index)
     logger.debug(f"Added url rule for / as root endpoint to osm2tactile.index")
+
+    # register custom fonts for mapnik
+    register_fonts(app.config["CUSTOM_FONT_PATH"])
 
     return app

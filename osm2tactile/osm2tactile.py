@@ -121,9 +121,9 @@ def index():
 
     # append all relevant layers to the map
     mapnik.load_map_from_string(m, get_mapnik_stylesheet())
-    m.layers.append(public_transport_layer)
-    m.layers.append(roads_layer)
     m.layers.append(building_layer)
+    m.layers.append(roads_layer)
+    m.layers.append(public_transport_layer)
     m.layers.append(center_layer)
 
     # save-path for the image
@@ -138,5 +138,4 @@ def index():
         map_img=f"{map_path}/{map_file_name}",
         lat=lat,
         lon=lon,
-        face_names=[fn for fn in mapnik.FontEngine.face_names()],
     )

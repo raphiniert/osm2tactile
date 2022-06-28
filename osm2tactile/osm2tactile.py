@@ -11,6 +11,28 @@ logger = logging.getLogger("osm2tactile")
 bp = Blueprint("osm2tactile", __name__)
 
 
+def get_mapnik_stylesheet():
+    background_color = "#ffffff"
+    road = {
+        "line": {  # line symbolizer
+            "stroke": "#000000",
+            "stroke_width": 3,
+        },
+        "text": {  # text symbolizer
+            "allow_overlap": False,
+            "face_name": "DejaVu Sans Book",
+            "dx": 0.0,
+            "dy": -15.0,
+            "placement": "line",
+            "size": 16,
+        },
+    }
+
+    return render_template(
+        "xml/mapnik_stylesheet.xml", background_color=background_color, road=road
+    )
+
+
 @bp.route("/", methods=("GET",), strict_slashes=False)
 def index():
     # sepcify coordinates
@@ -39,7 +61,7 @@ def index():
     m.zoom_to_box(bounding_box)
 
     # make the style available to the map with a name
-    road_style_name = "roads-fill-dejavu"
+    road_style_name = "road-style"
 
     # create layer containing the actual map data
     roads_layer = mapnik.Layer("roads-layer")
@@ -54,7 +76,7 @@ def index():
     roads_layer.styles.append(road_style_name)
 
     # append the layer to the map
-    mapnik.load_map(m, "osm2tactile/static/xml/mapnik_stylesheet.xml")
+    mapnik.load_map_from_string(m, get_mapnik_stylesheet())
     m.layers.append(roads_layer)
 
     # save-path for the image

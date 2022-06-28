@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Map background-color="{{ background_color }}" srs="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs" minimum-version="3.0.0">
+  <Style name="road-style">
+    <Rule>
+      <Filter>[highway] != ''</Filter>
+      <LineSymbolizer stroke="{{ road.line.stroke }}" stroke-width="{{ road.line.stroke_width }}"/>
+      <TextSymbolizer allow-overlap="{{ road.text.allow_overlap }}" face-name="{{ road.text.face_name }}" size="{{ road.text.size }}" placement="{{ road.text.placement }}" dx="{{ road.text.dx }}" dy="{{ road.text.dy }}">[name]</TextSymbolizer>
+    </Rule>
+  </Style>
+</Map>

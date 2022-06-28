@@ -32,6 +32,19 @@
       {% else %}
         <p>No street names found on map</p>
       {% endfor %}
+      <h3>Public transport</h3>
+      {% for public_transport in public_transports|sort(attribute="name") %}
+        {% if loop.first %}
+          <ul>Following public transport stations are on this map:
+        {% endif %}
+          <li>{{ public_transport.name }}{% if public_transport.name != point_lines[public_transport.osm_id] %}/{{point_lines[public_transport.osm_id]}}{% endif %}
+            {% if public_transport.operator %} ({{ public_transport.operator }}){% endif %}</li>
+        {% if loop.last %}
+          </ul>
+        {% endif %}
+      {% else %}
+        <p>No street names found on map</p>
+      {% endfor %}
       <h3>Points of interest</h3>
       {% for point in points|sort(attribute="name") %}
         {% if loop.first %}

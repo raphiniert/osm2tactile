@@ -151,11 +151,9 @@ def index():
     )
 
     # query points of interest and nearest steet for guessing the street
-    points = (
-        OSMPoint.query.filter(OSMPoint.way.op("&&")(func.ST_MakeEnvelope(*envelope)))
-        .filter(OSMPoint.name != None)
-        .all()
-    )
+    points = OSMPoint.query.filter(
+        OSMPoint.way.op("&&")(func.ST_MakeEnvelope(*envelope))
+    ).filter(OSMPoint.name != None)
     # TODO: make this a function or template fiter to get street name
     point_lines = {}
     for point in points:
@@ -177,7 +175,9 @@ def index():
         )
         point_lines[point.osm_id] = line[0]
 
-    # TODO: query public transport stations
+    # query public transport stations and remove from pois
+    public_transports = points.filter(OSMPoint.public_transport != None).all()
+    points = points.filter(OSMPoint.public_transport == None).all()
 
     # query buildings
     buildings = (
@@ -199,5 +199,6 @@ def index():
         streets=streets,
         points=points,
         point_lines=point_lines,
+        public_transports=public_transports,
         buildings=buildings,
     )

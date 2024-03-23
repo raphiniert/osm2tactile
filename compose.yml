@@ -6,7 +6,7 @@ services:
       - .env
     environment:
       - TZ=Europe/Vienna
-    image: postgis/postgis:14-master
+    image: postgis/postgis:16-3.4-alpine
     volumes:
       - ./data/db:/var/lib/postgresql/data
     logging:
@@ -29,9 +29,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
-    command: flask run
     ports:
-      - "5000:5000"
+      - "5001:5000"
     logging:
       driver: "json-file"
       options:
@@ -41,7 +40,7 @@ services:
     tty: true
     restart: unless-stopped
     volumes:
-      - ./:/srv/osm2tactile
+      - ./:/osm2tactile
     depends_on:
       db:
         condition: service_healthy

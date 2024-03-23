@@ -16,10 +16,8 @@ cd osm2tactile
 this step is only necessary when developing
 
 ```shell script
-python3 -m venv venv
-. venv/bin/activate
-pip install pip --upgrade
-pip install requirements-dev.txt
+poetry env use python3.9.9
+poetry install
 ```
 
 ### create flask config
@@ -72,7 +70,7 @@ download the osm data e. g. from https://download.geofabrik.de (using austria fo
 **note**: go grab yourself a coffe, the next step might take a while...
 
 ```shell script
-docker compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --username=postgres --port=5432 --password
+docker compose exec flask osm2pgsql data/osm/austria-latest.osm.pbf -v --slim --database=osm2tactile --host=db --user=postgres --port=5432 --password
 ```
 
 ### bonus points: self host nominatim
@@ -88,7 +86,7 @@ services:
   flask:
     # ...
   nominatim:
-    image: mediagis/nominatim:4.0
+    image: mediagis/nominatim:4.4
     ports:
         - "8080:8080"
     environment:
@@ -97,7 +95,7 @@ services:
         REPLICATION_URL: https://download.geofabrik.de/europe/austria-updates/
         NOMINATIM_PASSWORD: very_secure_password
     volumes:
-        - ./data/nominatim-data:/var/lib/postgresql/12/main
+        - ./data/nominatim-data:/var/lib/postgresql/14/main
     shm_size: 1gb
     logging:
       driver: "json-file"
@@ -109,7 +107,7 @@ services:
     restart: unless-stopped
 ```
 
-You must also updated the nominatim url in the `instance/config.py` to your instance
+You need to update the nominatim url in the `instance/config.py` to use your instance
 
 ```python
 # nominatim

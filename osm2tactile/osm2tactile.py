@@ -1,9 +1,7 @@
-from cgitb import text
 import logging
-import requests
 import mapnik
 
-from flask import current_app, g, Blueprint, render_template, request
+from flask import current_app, Blueprint, render_template
 
 
 logger = logging.getLogger("osm2tactile")
@@ -64,7 +62,7 @@ def index():
     mapnik.render_to_file(m, f"{static_path}/{map_path}/{map_file_name}")
 
     return render_template(
-        f"osm2tactile/index.html",
+        "osm2tactile/index.html",
         mapnik_version=mapnik.mapnik_version_string(),
         map_img=f"{map_path}/{map_file_name}",
         lat=lat,

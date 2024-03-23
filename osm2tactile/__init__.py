@@ -1,7 +1,7 @@
 import os
 import logging
 
-from flask import current_app, g, Flask, request
+from flask import Flask
 from rich.logging import RichHandler
 
 
@@ -42,9 +42,9 @@ def create_app(test_config=None):
     from osm2tactile import osm2tactile
 
     app.register_blueprint(osm2tactile.bp)
-    logger.debug(f"Registered osm2tactile blueprint")
+    logger.debug("Registered osm2tactile blueprint")
 
     app.add_url_rule("/", endpoint="root", view_func=osm2tactile.index)
-    logger.debug(f"Added url rule for / as root endpoint to osm2tactile.index")
+    logger.debug("Added url rule for / as root endpoint to osm2tactile.index")
 
     return app

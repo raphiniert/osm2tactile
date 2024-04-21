@@ -32,6 +32,7 @@ POSTGRES_DB = "osm2tactile"
 POSTGRES_USER = "postgres"
 POSTGRES_PASSWORD = "your.super.secret.password"
 POSTGRES_HOST = "db"
+SQLALCHEMY_DATABASE_URI = f"postgresql+psycopg://{POSTGRES_USER}:{POSTGRES_PASSWORD}@{POSTGRES_HOST}:{POSTGRES_PORT}/{POSTGRES_DB}"
 
 # nominatim
 NOMINATIM_URL = "https://nominatim.openstreetmap.org"

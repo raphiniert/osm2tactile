@@ -14,7 +14,14 @@
     <p>
       Map center coordinates: {{ lat }}, {{ lon }}
     </p>
-    <img src="{{ url_for('static', filename=map_img)}}" alt="" />
+    <img src="{{ url_for('static', filename=map_img)}}" alt="" height="{{ map_height}}" width="{{ map_width}}"/>
+    {% for street in streets %}
+      <p>{{ street }}</p>
+    {% else %}
+      <p>
+        No street info available
+      </p>
+    {% endfor %}
   </div>
 {% endblock%}
 
